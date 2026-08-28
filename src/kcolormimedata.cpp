@@ -24,6 +24,11 @@ void populateMimeData(QMimeData *mimeData, const QColor &color)
 
 bool canDecode(const QMimeData *mimeData)
 {
+    // QClipboard::mimeData() can return nullptr when the clipboard has never
+    // been set (e.g. no clipboard manager, or the "offscreen" QPA platform).
+    if (!mimeData) {
+        return false;
+    }
     if (mimeData->hasColor()) {
         return true;
     }
@@ -38,6 +43,9 @@ bool canDecode(const QMimeData *mimeData)
 
 QColor fromMimeData(const QMimeData *mimeData)
 {
+    if (!mimeData) {
+        return QColor();
+    }
     if (mimeData->hasColor()) {
         return mimeData->colorData().value<QColor>();
     }
