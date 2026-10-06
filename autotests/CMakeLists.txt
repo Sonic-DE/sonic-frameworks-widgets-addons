@@ -6,6 +6,7 @@ find_package(Qt6 ${REQUIRED_QT_VERSION} CONFIG REQUIRED Test)
 ecm_add_tests(
   kacceleratormanagertest.cpp
   kactionmenutest.cpp
+  kcapacitybartest.cpp
   kcharselect_unittest.cpp
   kcollapsiblegroupbox_test.cpp
   kcolorbuttontest.cpp
